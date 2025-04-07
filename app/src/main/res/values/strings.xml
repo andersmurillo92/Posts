@@ -3,6 +3,8 @@
 
     <string name="OK">OK</string>
 
+    <string name="title_activity_post_detail">Post detail</string>
+
     <!-- MESSAGES TO USER -->
 
     <string name="message_please_wait">Please, wait&#8230;</string>

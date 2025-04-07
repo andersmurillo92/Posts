@@ -1,6 +1,8 @@
 package com.andersmurillo92.posts.views.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -9,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andersmurillo92.posts.R
 import com.andersmurillo92.posts.data.model.PostModel
 import com.andersmurillo92.posts.databinding.ActivityHomeBinding
+import com.andersmurillo92.posts.utils.Animations
 import com.andersmurillo92.posts.views.adapters.PostsAdapter
 import com.andersmurillo92.posts.views.base.BaseActivity
 import com.andersmurillo92.posts.views.interfaces.ItemActionListener
+import com.andersmurillo92.posts.views.post.detail.PostDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +26,7 @@ class HomeActivity: BaseActivity(), ItemActionListener {
 
     private val postsAdapter = PostsAdapter(this)
     lateinit var listOfPosts : List<PostModel>
+    var animations = Animations()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,7 @@ class HomeActivity: BaseActivity(), ItemActionListener {
             it?.let {
                 listOfPosts = it
                 postsAdapter.onUpdateData(listOfPosts)
+                animations.runRecyclerAnimation(binding.postsRv)
             }
         }
     }
@@ -65,7 +71,11 @@ class HomeActivity: BaseActivity(), ItemActionListener {
         }
     }
 
-    override fun onClickItem(item: Any, position: Int) {
-        // TODO("Not yet implemented")
+    override fun onClickItem(item: PostModel, position: Int) {
+        goToActivity(PostDetailActivity::class.java, item)
+    }
+
+    private fun <T: Activity>goToActivity(classType: Class<T>, postModel: PostModel) {
+        startActivity(Intent(this, classType).putExtra("post", postModel))
     }
 }

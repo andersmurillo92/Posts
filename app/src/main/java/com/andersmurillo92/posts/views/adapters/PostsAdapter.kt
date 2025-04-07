@@ -23,6 +23,9 @@ class PostsAdapter(private val itemActionListener: ItemActionListener) : Recycle
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            itemActionListener.onClickItem(item, position)
+        }
     }
 
     override fun getItemCount(): Int =
