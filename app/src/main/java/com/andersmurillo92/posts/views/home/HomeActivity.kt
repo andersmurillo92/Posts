@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andersmurillo92.posts.R
 import com.andersmurillo92.posts.data.model.PostModel
 import com.andersmurillo92.posts.databinding.ActivityHomeBinding
+import com.andersmurillo92.posts.utils.Animations
 import com.andersmurillo92.posts.views.adapters.PostsAdapter
 import com.andersmurillo92.posts.views.base.BaseActivity
 import com.andersmurillo92.posts.views.interfaces.ItemActionListener
@@ -25,6 +26,7 @@ class HomeActivity: BaseActivity(), ItemActionListener {
 
     private val postsAdapter = PostsAdapter(this)
     lateinit var listOfPosts : List<PostModel>
+    var animations = Animations()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,7 @@ class HomeActivity: BaseActivity(), ItemActionListener {
             it?.let {
                 listOfPosts = it
                 postsAdapter.onUpdateData(listOfPosts)
+                animations.runRecyclerAnimation(binding.postsRv)
             }
         }
     }
