@@ -1,6 +1,8 @@
 package com.andersmurillo92.posts.views.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -12,6 +14,7 @@ import com.andersmurillo92.posts.databinding.ActivityHomeBinding
 import com.andersmurillo92.posts.views.adapters.PostsAdapter
 import com.andersmurillo92.posts.views.base.BaseActivity
 import com.andersmurillo92.posts.views.interfaces.ItemActionListener
+import com.andersmurillo92.posts.views.post.detail.PostDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,7 +68,11 @@ class HomeActivity: BaseActivity(), ItemActionListener {
         }
     }
 
-    override fun onClickItem(item: Any, position: Int) {
-        // TODO("Not yet implemented")
+    override fun onClickItem(item: PostModel, position: Int) {
+        goToActivity(PostDetailActivity::class.java, item)
+    }
+
+    private fun <T: Activity>goToActivity(classType: Class<T>, postModel: PostModel) {
+        startActivity(Intent(this, classType).putExtra("post", postModel))
     }
 }
