@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Posts</string>
+
+    <string name="OK">OK</string>
+
+    <!-- MESSAGES TO USER -->
+
+    <string name="message_please_wait">Please, wait&#8230;</string>
+    <string name="message_title_getting_posts">Getting last posts</string>
+
+    <!-- ERROR MESSAGES -->
+
+    <string name="error_title">Oops!</string>
+    <string name="message_not_connected">Maybe, you don\'t have network access. Please, check your Wifi connection or mobile network access</string>
+    <string name="message_error_ocurred">A connection error has occurred. Please, try again</string>
 </resources>
