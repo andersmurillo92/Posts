@@ -40,7 +40,7 @@ class HomeActivity: BaseActivity(), ItemActionListener {
 
         viewModel.posts.observe(this) {
             it?.let {
-                listOfPosts = it.list
+                listOfPosts = it
                 postsAdapter.onUpdateData(listOfPosts)
             }
         }

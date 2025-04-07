@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.andersmurillo92.posts.data.model.ResponseModel
+import com.andersmurillo92.posts.data.model.PostModel
 import com.andersmurillo92.posts.domain.PostsUseCase
 import com.andersmurillo92.posts.views.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(private val postsUseCase: PostsUseCase):
     }
 
     val isLoading = MutableLiveData<Boolean>()
-    val posts = MutableLiveData<ResponseModel?>()
+    val posts = MutableLiveData<List<PostModel>?>()
 
     var singleLiveEvent: SingleLiveEvent<ViewEvent> = SingleLiveEvent()
 
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(private val postsUseCase: PostsUseCase):
             try {
                 isLoading.value = true
 
-                val result: ResponseModel? = postsUseCase()
+                val result: List<PostModel>? = postsUseCase()
                 posts.value = result
 
                 isLoading.value = false

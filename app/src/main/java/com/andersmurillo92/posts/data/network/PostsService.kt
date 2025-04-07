@@ -1,7 +1,7 @@
 package com.andersmurillo92.posts.data.network
 
 import android.util.Log
-import com.andersmurillo92.posts.data.model.ResponseModel
+import com.andersmurillo92.posts.data.model.PostModel
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -11,14 +11,14 @@ class PostsService @Inject constructor(private val postsApiClient: PostsApiClien
         private const val TAG = "----- PostsService -----"
     }
 
-    suspend fun getPosts(): ResponseModel =
+    suspend fun getPosts(): List<PostModel> =
         try {
             Log.i(TAG, "Method Called: getPosts()")
-            val result: Response<ResponseModel?> = postsApiClient.getPosts()
+            val result: Response<List<PostModel>?> = postsApiClient.getPosts()
             Log.i(TAG, "$result")
-            result.body() ?: ResponseModel(emptyList())
+            result.body() ?: emptyList()
         } catch (e: Exception) {
             Log.i(TAG, "Exception: $e")
-            ResponseModel(emptyList())
+            emptyList()
         }
 }
