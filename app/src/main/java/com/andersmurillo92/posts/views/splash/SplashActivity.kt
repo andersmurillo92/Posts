@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.view.animation.AccelerateInterpolator
 import com.andersmurillo92.posts.R
 import com.andersmurillo92.posts.databinding.ActivitySplashBinding
+import com.andersmurillo92.posts.views.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,7 +62,7 @@ class SplashActivity: AppCompatActivity() {
 
         val mHandler1 = Handler()
         mHandler1.postDelayed({
-            // TODO("Go to home")
+            goToActivity(HomeActivity::class.java)
             finish()
         }, 3000)
     }
